@@ -11,5 +11,6 @@ import Users from './pages/Users.vue'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 </style>

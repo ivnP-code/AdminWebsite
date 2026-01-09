@@ -12,18 +12,28 @@
     <main class="content">
       <h1>Users Page</h1>
                 <div class="card">
-                     <UserForm />
+<UserForm @add-user="addUserToList" />
                  </div>
         <div class="card">
-            <UserTable />
+<UserTable :users="users" @delete-user="deleteUser" />
         </div>
     </main>
   </div>
 </template>
 
-<script setup>
+<script setup> 
 import UserForm from '/src/components/Users/UserForm.vue'
 import UserTable from '/src/components/Users/UserTable.vue'
+import { ref } from 'vue'
+
+const users = ref([])
+
+function addUserToList(user) {
+  users.value.push(user) // сюда прилетает объект {id, name, email} из формы
+}
+function deleteUser(id) {
+  users.value = users.value.filter(u => u.id !== id)
+}
 </script>
 
 <style scoped>
