@@ -7,6 +7,7 @@
         <div v-for="user in users" :key="user.id" class="user-card">
       <h3>{{ user.name }}</h3>
       <p>{{ user.email }}</p>
+      <button class="Delete" @click="deleteUser(user.id)">Видалити</button>
         </div>
     </div>
     </div>
@@ -16,6 +17,11 @@
 const props = defineProps({
   users: Array
 })
+const emit = defineEmits(['delete-user'])
+
+function deleteUser(userId) {
+  emit('delete-user', userId)
+}
 </script>
 
 <style scoped>
@@ -43,5 +49,14 @@ const props = defineProps({
   margin: 0;
   font-size: 14px;
   color: #ccc;
+}
+.Delete {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 </style>

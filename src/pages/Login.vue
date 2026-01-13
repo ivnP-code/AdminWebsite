@@ -5,26 +5,54 @@
 
       <div class="field">
         <label>Name </label>
-        <input type="text" placeholder="Ім'я" />
+        <input type="text" v-model="Name" placeholder="Ім'я"/>
       </div>
 
       <div class="field">
         <label>Email</label>
-        <input type="email" placeholder="email@example.com" />
+        <input type="email" v-model="Email" placeholder="email@example.com" />
       </div>
 
       <div class="field">
         <label>Password</label>
-        <input type="password" placeholder="••••••••" />
+        <input type="password" v-model="Password" placeholder="••••••••" />
       </div>
-
-      <button class="login-button">Login</button>
+            <div class="ErrorNotification" v-if="error">
+                {{ error }} 
+            </div>
+      <button class="login-button" @click="LogIn">Login</button>
     </div>
   </div>
+  
 </template>
 
 <script setup>
-// Пока логики нет — только верстка
+import { ref } from 'vue';
+import router from '../router';
+const Name = ref('')
+const Email = ref('')
+const Password = ref('')
+const error = ref('')
+
+function LogIn() {
+   if (!Name.value) {
+    error.value = 'Введіть ім`я'
+    return
+  }
+
+  if (!Email.value || !Email.value.includes('@')) {
+    error.value = 'Введіть коректну електронну пошту'
+    return
+  }
+
+  if (!Password.value) {
+    error.value = 'Введіть пароль'
+    return
+  }
+
+  error.value = ''
+  router.push('/users')
+}
 </script>
 
 <style scoped>
@@ -91,4 +119,25 @@
 .login-button:hover {
   background-color: #2563eb;
 }
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ErrorNotification {
+  margin: 12px;
+  padding: 10px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+animation: fadeInOut 0.5s ease-in-out;
+}
+
 </style>
