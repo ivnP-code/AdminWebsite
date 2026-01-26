@@ -32,7 +32,7 @@ function deleteUser(userId) {
 }
 
 .user-card {
-  background-color: #2c2c3e; /* как карточки Users.vue */
+  background-color: #2c2c3e; 
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);

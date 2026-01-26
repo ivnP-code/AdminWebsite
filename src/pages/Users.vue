@@ -6,7 +6,8 @@
         <li>Dashboard</li>
         <li>Users</li>
         <li>Settings</li>
-      </ul>
+        <li><button class="logout-button" @click="Logout">Logout</button></li>
+        </ul>
     </aside>
 
     <main class="content">
@@ -29,10 +30,13 @@ import { ref } from 'vue'
 const users = ref([])
 
 function addUserToList(user) {
-  users.value.push(user) // сюда прилетает объект {id, name, email} из формы
+  users.value.push(user) 
 }
 function deleteUser(id) {
   users.value = users.value.filter(u => u.id !== id)
+}
+function Logout() {
+  window.location.href = '/'
 }
 </script>
 
@@ -77,8 +81,18 @@ function deleteUser(id) {
 .sidebar li:hover {
   color: #3b82f6;
 }
+.logout-button {
+  background-color: #2c2c3e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.logout-button:hover {
+color: #3b82f6;
+}
 
-/* Основной контент */
 .content {
   flex: 1;
   padding: 30px;

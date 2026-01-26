@@ -21,8 +21,6 @@ import { ref } from 'vue'
 
 const name = ref('')
 const email = ref('')
-
-// emit события родителю
 const emit = defineEmits(['add-user'])
 
 function submitForm() {

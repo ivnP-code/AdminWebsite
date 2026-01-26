@@ -29,24 +29,18 @@
 <script setup>
 import { ref } from 'vue';
 import router from '../router';
+import { validateLogin } from '../utils/auth';
+
 const Name = ref('')
 const Email = ref('')
 const Password = ref('')
 const error = ref('')
 
 function LogIn() {
-   if (!Name.value) {
-    error.value = 'Введіть ім`я'
-    return
-  }
-
-  if (!Email.value || !Email.value.includes('@')) {
-    error.value = 'Введіть коректну електронну пошту'
-    return
-  }
-
-  if (!Password.value) {
-    error.value = 'Введіть пароль'
+const validation = validateLogin(Name.value, Email.value, Password.value)
+  
+  if (!validation.isValid) {
+    error.value = validation.error
     return
   }
 
